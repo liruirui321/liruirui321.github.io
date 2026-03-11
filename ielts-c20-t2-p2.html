@@ -1,0 +1,428 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>雅思阅读精读 - C20 Test 2 Passage 2 - Procrastination</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC", sans-serif;
+            line-height: 1.8;
+            color: #333;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+        
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+        
+        header {
+            background: white;
+            border-radius: 20px;
+            padding: 40px;
+            margin-bottom: 30px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.2);
+            text-align: center;
+        }
+        
+        header h1 {
+            color: #667eea;
+            font-size: 2.5em;
+            margin-bottom: 10px;
+        }
+        
+        .back-link {
+            display: inline-block;
+            margin-bottom: 20px;
+            color: white;
+            text-decoration: none;
+            font-size: 1.1em;
+            padding: 10px 20px;
+            background: rgba(255,255,255,0.2);
+            border-radius: 25px;
+        }
+        
+        .tabs {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 30px;
+            flex-wrap: wrap;
+        }
+        
+        .tab {
+            flex: 1;
+            min-width: 120px;
+            padding: 15px 20px;
+            background: white;
+            border: none;
+            border-radius: 15px;
+            font-size: 1em;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+        
+        .tab.active {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+        }
+        
+        .content {
+            background: white;
+            border-radius: 20px;
+            padding: 40px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.2);
+        }
+        
+        .tab-content {
+            display: none;
+        }
+        
+        .tab-content.active {
+            display: block;
+        }
+        
+        .question-form {
+            background: #f8f9fa;
+            padding: 30px;
+            border-radius: 15px;
+            margin-bottom: 30px;
+        }
+        
+        .question-item {
+            margin-bottom: 20px;
+            padding: 20px;
+            background: white;
+            border-radius: 10px;
+        }
+        
+        .question-item label {
+            display: block;
+            font-weight: 600;
+            margin-bottom: 10px;
+            color: #667eea;
+        }
+        
+        .question-item input[type="text"] {
+            width: 100%;
+            padding: 10px;
+            border: 2px solid #e0e0e0;
+            border-radius: 8px;
+            font-size: 1em;
+        }
+        
+        .question-item select {
+            width: 100%;
+            padding: 10px;
+            border: 2px solid #e0e0e0;
+            border-radius: 8px;
+            font-size: 1em;
+        }
+        
+        .btn {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            padding: 12px 30px;
+            border: none;
+            border-radius: 25px;
+            font-size: 1.1em;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        
+        .btn:hover {
+            transform: scale(1.05);
+        }
+        
+        .wrong-questions {
+            margin-top: 30px;
+        }
+        
+        .wrong-item {
+            background: #ffebee;
+            padding: 20px;
+            margin-bottom: 15px;
+            border-radius: 12px;
+            border-left: 4px solid #f44336;
+        }
+        
+        .paragraph {
+            margin-bottom: 30px;
+            padding: 25px;
+            background: #f8f9fa;
+            border-radius: 15px;
+            border-left: 5px solid #667eea;
+        }
+        
+        .paragraph-title {
+            font-size: 1.3em;
+            font-weight: 700;
+            color: #667eea;
+            margin-bottom: 15px;
+        }
+        
+        .text-en {
+            color: #555;
+            font-style: italic;
+            margin-bottom: 15px;
+            line-height: 1.9;
+            padding: 15px;
+            background: white;
+            border-radius: 10px;
+        }
+        
+        .text-zh {
+            color: #333;
+            line-height: 1.9;
+            padding: 15px;
+            background: #fff8e1;
+            border-radius: 10px;
+        }
+        
+        .vocab-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 20px;
+        }
+        
+        .vocab-card {
+            background: #f8f9fa;
+            padding: 20px;
+            border-radius: 12px;
+            border-left: 4px solid #667eea;
+        }
+        
+        .vocab-word {
+            font-size: 1.3em;
+            font-weight: 700;
+            color: #667eea;
+            margin-bottom: 8px;
+        }
+        
+        @media (max-width: 768px) {
+            .tabs {
+                flex-direction: column;
+            }
+            .tab {
+                min-width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <a href="index.html" class="back-link">← 返回首页</a>
+        
+        <header>
+            <h1>📚 雅思阅读精读</h1>
+            <div class="meta">C20 Test 2 Passage 2 - Procrastination</div>
+        </header>
+        
+        <div class="tabs">
+            <button class="tab active" onclick="showTab('questions')">📝 做题记录</button>
+            <button class="tab" onclick="showTab('overview')">📖 文章概览</button>
+            <button class="tab" onclick="showTab('detailed')">🔍 段落精读</button>
+            <button class="tab" onclick="showTab('vocab')">📚 生词积累</button>
+            <button class="tab" onclick="showTab('synonyms')">🔄 同义替换</button>
+        </div>
+        
+        <div class="content">
+            <!-- 做题记录 -->
+            <div id="questions" class="tab-content active">
+                <h2 style="color: #667eea; margin-bottom: 20px;">做题记录</h2>
+                
+                <div class="question-form">
+                    <h3 style="margin-bottom: 20px;">记录你的答题情况</h3>
+                    
+                    <div id="questionsList"></div>
+                    
+                    <button class="btn" onclick="saveAnswers()">保存答案</button>
+                </div>
+                
+                <div class="wrong-questions" id="wrongQuestions" style="display:none;">
+                    <h3 style="color: #f44336; margin-bottom: 20px;">错题列表</h3>
+                    <div id="wrongList"></div>
+                </div>
+            </div>
+            
+            <!-- 文章概览 -->
+            <div id="overview" class="tab-content">
+                <h2 style="color: #667eea; margin-bottom: 20px;">文章概览</h2>
+                
+                <div class="paragraph">
+                    <div class="paragraph-title">文章结构</div>
+                    <ul style="margin-left: 20px; line-height: 2;">
+                        <li><strong>A段：</strong>拖延的定义与危害</li>
+                        <li><strong>B段：</strong>拖延的真正原因（情绪管理问题）</li>
+                        <li><strong>C段：</strong>易拖延人群和心理机制</li>
+                        <li><strong>D段：</strong>拖延对学业和职场的影响</li>
+                        <li><strong>E段：</strong>拖延对健康的危害</li>
+                        <li><strong>F段：</strong>应对策略</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <!-- 段落精读 -->
+            <div id="detailed" class="tab-content">
+                <h2 style="color: #667eea; margin-bottom: 20px;">段落精读</h2>
+                
+                <div class="paragraph">
+                    <div class="paragraph-title">A段 - 拖延症的定义</div>
+                    <div class="text-en">
+                        Procrastination is the habit of delaying a necessary task, usually by focusing on less urgent, more enjoyable, and easier activities instead.
+                    </div>
+                    <div class="text-zh">
+                        拖延症是推迟必要任务的习惯，通常是通过专注于不那么紧急、更愉快、更容易的活动来代替。
+                    </div>
+                </div>
+                
+                <div class="paragraph">
+                    <div class="paragraph-title">B段 - 拖延的真正原因</div>
+                    <div class="text-en">
+                        Contrary to popular belief, procrastination is not due to laziness or poor time management. Scientific studies suggest procrastination is, in fact, caused by poor mood management.
+                    </div>
+                    <div class="text-zh">
+                        与普遍看法相反，拖延不是由于懒惰或时间管理不善。科学研究表明，拖延实际上是由情绪管理不善引起的。
+                    </div>
+                </div>
+            </div>
+            
+            <!-- 生词积累 -->
+            <div id="vocab" class="tab-content">
+                <h2 style="color: #667eea; margin-bottom: 20px;">生词积累</h2>
+                
+                <div class="vocab-list">
+                    <div class="vocab-card">
+                        <div class="vocab-word">procrastination</div>
+                        <div class="vocab-meaning">n. 拖延，耽搁</div>
+                    </div>
+                    <div class="vocab-card">
+                        <div class="vocab-word">berate</div>
+                        <div class="vocab-meaning">v. 严厉责备，痛斥</div>
+                    </div>
+                    <div class="vocab-card">
+                        <div class="vocab-word">chronically</div>
+                        <div class="vocab-meaning">adv. 长期地，慢性地</div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- 同义替换 -->
+            <div id="synonyms" class="tab-content">
+                <h2 style="color: #667eea; margin-bottom: 20px;">同义替换</h2>
+                
+                <div style="background: #fff3e0; padding: 20px; border-radius: 12px; margin-bottom: 15px;">
+                    <strong style="color: #e65100;">delay → put off</strong><br>
+                    推迟任务 = 拖延任务
+                </div>
+                
+                <div style="background: #fff3e0; padding: 20px; border-radius: 12px; margin-bottom: 15px;">
+                    <strong style="color: #e65100;">poor time management → ineffective time management</strong><br>
+                    时间管理不善 = 时间管理无效
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <script>
+        // 题目数据
+        const questions = [
+            {id: 1, type: 'heading', question: '段落标题匹配 - A段'},
+            {id: 2, type: 'heading', question: '段落标题匹配 - B段'},
+            {id: 3, type: 'heading', question: '段落标题匹配 - C段'},
+            {id: 4, type: 'tfng', question: 'True/False/Not Given - Q1'},
+            {id: 5, type: 'tfng', question: 'True/False/Not Given - Q2'},
+            {id: 6, type: 'matching', question: '信息匹配 - Q1'},
+            {id: 7, type: 'matching', question: '信息匹配 - Q2'},
+        ];
+        
+        // 渲染题目列表
+        function renderQuestions() {
+            const container = document.getElementById('questionsList');
+            container.innerHTML = questions.map(q => `
+                <div class="question-item">
+                    <label>${q.question}</label>
+                    <input type="text" id="answer-${q.id}" placeholder="你的答案">
+                    <select id="correct-${q.id}" style="margin-top: 10px;">
+                        <option value="">选择对错</option>
+                        <option value="correct">✅ 正确</option>
+                        <option value="wrong">❌ 错误</option>
+                    </select>
+                </div>
+            `).join('');
+        }
+        
+        // 保存答案
+        function saveAnswers() {
+            const wrongQuestions = [];
+            questions.forEach(q => {
+                const answer = document.getElementById(`answer-${q.id}`).value;
+                const correct = document.getElementById(`correct-${q.id}`).value;
+                
+                if (correct === 'wrong') {
+                    wrongQuestions.push({
+                        question: q.question,
+                        answer: answer
+                    });
+                }
+            });
+            
+            // 保存到 localStorage
+            localStorage.setItem('wrongQuestions', JSON.stringify(wrongQuestions));
+            
+            // 显示错题
+            displayWrongQuestions(wrongQuestions);
+        }
+        
+        // 显示错题
+        function displayWrongQuestions(wrongQuestions) {
+            const container = document.getElementById('wrongQuestions');
+            const list = document.getElementById('wrongList');
+            
+            if (wrongQuestions.length === 0) {
+                container.style.display = 'none';
+                return;
+            }
+            
+            container.style.display = 'block';
+            list.innerHTML = wrongQuestions.map(q => `
+                <div class="wrong-item">
+                    <strong>${q.question}</strong><br>
+                    你的答案：${q.answer || '未填写'}
+                </div>
+            `).join('');
+        }
+        
+        // 切换标签页
+        function showTab(tabName) {
+            document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
+            document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+            
+            document.getElementById(tabName).classList.add('active');
+            event.target.classList.add('active');
+        }
+        
+        // 页面加载时
+        window.onload = function() {
+            renderQuestions();
+            
+            // 加载已保存的错题
+            const saved = localStorage.getItem('wrongQuestions');
+            if (saved) {
+                displayWrongQuestions(JSON.parse(saved));
+            }
+        };
+    </script>
+</body>
+</html>
