@@ -1,0 +1,583 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>雅思阅读精读 - C20 Test 2 Passage 2</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", sans-serif;
+            line-height: 1.8;
+            color: #333;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        header {
+            background: white;
+            border-radius: 20px;
+            padding: 40px;
+            margin-bottom: 30px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.2);
+            text-align: center;
+        }
+        
+        header h1 {
+            color: #667eea;
+            font-size: 2.5em;
+            margin-bottom: 10px;
+        }
+        
+        header .meta {
+            color: #666;
+            font-size: 1.1em;
+        }
+        
+        .back-link {
+            display: inline-block;
+            margin-bottom: 20px;
+            color: white;
+            text-decoration: none;
+            font-size: 1.1em;
+            padding: 10px 20px;
+            background: rgba(255,255,255,0.2);
+            border-radius: 25px;
+            transition: all 0.3s;
+        }
+        
+        .back-link:hover {
+            background: rgba(255,255,255,0.3);
+            transform: translateX(-5px);
+        }
+        
+        .tabs {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 30px;
+            flex-wrap: wrap;
+        }
+        
+        .tab {
+            flex: 1;
+            min-width: 150px;
+            padding: 15px 25px;
+            background: white;
+            border: none;
+            border-radius: 15px;
+            font-size: 1.1em;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+        
+        .tab:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(102, 126, 234, 0.3);
+        }
+        
+        .tab.active {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+        }
+        
+        .content {
+            background: white;
+            border-radius: 20px;
+            padding: 40px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.2);
+        }
+        
+        .tab-content {
+            display: none;
+        }
+        
+        .tab-content.active {
+            display: block;
+            animation: fadeIn 0.5s;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .paragraph {
+            margin-bottom: 30px;
+            padding: 25px;
+            background: #f8f9fa;
+            border-radius: 15px;
+            border-left: 5px solid #667eea;
+        }
+        
+        .paragraph-title {
+            font-size: 1.3em;
+            font-weight: 700;
+            color: #667eea;
+            margin-bottom: 15px;
+        }
+        
+        .text-en {
+            color: #555;
+            font-style: italic;
+            margin-bottom: 15px;
+            line-height: 1.9;
+            padding: 15px;
+            background: white;
+            border-radius: 10px;
+        }
+        
+        .text-zh {
+            color: #333;
+            line-height: 1.9;
+            padding: 15px;
+            background: #fff8e1;
+            border-radius: 10px;
+        }
+        
+        .main-point {
+            background: #e3f2fd;
+            padding: 15px 20px;
+            margin: 15px 0;
+            border-radius: 10px;
+            border-left: 4px solid #2196f3;
+        }
+        
+        .main-point strong {
+            color: #1976d2;
+        }
+        
+        .vocab-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 20px;
+            margin-top: 20px;
+        }
+        
+        .vocab-card {
+            background: #f8f9fa;
+            padding: 20px;
+            border-radius: 12px;
+            border-left: 4px solid #667eea;
+            transition: all 0.3s;
+        }
+        
+        .vocab-card:hover {
+            transform: translateX(5px);
+            box-shadow: 0 5px 15px rgba(102, 126, 234, 0.2);
+        }
+        
+        .vocab-word {
+            font-size: 1.3em;
+            font-weight: 700;
+            color: #667eea;
+            margin-bottom: 8px;
+        }
+        
+        .vocab-meaning {
+            color: #555;
+            margin-bottom: 8px;
+        }
+        
+        .vocab-example {
+            color: #777;
+            font-style: italic;
+            font-size: 0.95em;
+        }
+        
+        .synonym-list {
+            list-style: none;
+            margin-top: 20px;
+        }
+        
+        .synonym-item {
+            background: #fff3e0;
+            padding: 20px;
+            margin-bottom: 15px;
+            border-radius: 12px;
+            border-left: 4px solid #ff9800;
+        }
+        
+        .synonym-original {
+            font-weight: 700;
+            color: #e65100;
+            margin-bottom: 8px;
+        }
+        
+        .synonym-replacement {
+            color: #555;
+        }
+        
+        .analysis-section {
+            margin-bottom: 30px;
+            padding: 25px;
+            background: #f8f9fa;
+            border-radius: 15px;
+        }
+        
+        .analysis-section h3 {
+            color: #667eea;
+            font-size: 1.5em;
+            margin-bottom: 15px;
+        }
+        
+        .mistake-card {
+            background: #ffebee;
+            padding: 20px;
+            margin-bottom: 15px;
+            border-radius: 12px;
+            border-left: 4px solid #f44336;
+        }
+        
+        .mistake-type {
+            font-weight: 700;
+            color: #c62828;
+            margin-bottom: 10px;
+        }
+        
+        .mistake-reason {
+            color: #555;
+            line-height: 1.8;
+        }
+        
+        @media (max-width: 768px) {
+            body {
+                padding: 10px;
+            }
+            
+            header {
+                padding: 20px;
+            }
+            
+            header h1 {
+                font-size: 1.8em;
+            }
+            
+            .content {
+                padding: 20px;
+            }
+            
+            .tabs {
+                flex-direction: column;
+            }
+            
+            .tab {
+                min-width: 100%;
+            }
+            
+            .vocab-list {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <a href="index.html" class="back-link">← 返回首页</a>
+        
+        <header>
+            <h1>📚 雅思阅读精读</h1>
+            <div class="meta">C20 Test 2 Passage 2 - Procrastination</div>
+        </header>
+        
+        <div class="tabs">
+            <button class="tab active" onclick="showTab('overview')">📖 文章概览</button>
+            <button class="tab" onclick="showTab('detailed')">🔍 段落精读</button>
+            <button class="tab" onclick="showTab('vocab')">📝 生词积累</button>
+            <button class="tab" onclick="showTab('synonyms')">🔄 同义替换</button>
+            <button class="tab" onclick="showTab('analysis')">💡 错因分析</button>
+        </div>
+        
+        <div class="content">
+            <!-- 文章概览 -->
+            <div id="overview" class="tab-content active">
+                <h2 style="color: #667eea; margin-bottom: 20px;">文章概览</h2>
+                
+                <div class="main-point">
+                    <strong>📌 文章主题：</strong> 拖延症的心理学解读 - 原因、影响与应对策略
+                </div>
+                
+                <div class="main-point">
+                    <strong>📌 文章类型：</strong> 说明文（Expository）
+                </div>
+                
+                <div class="main-point">
+                    <strong>📌 行文结构：</strong>
+                    <ul style="margin-top: 10px; margin-left: 20px;">
+                        <li>A段：引入拖延症概念，指出其危害</li>
+                        <li>B段：揭示拖延的真正原因（情绪管理问题）</li>
+                        <li>C段：分析易拖延人群和心理机制</li>
+                        <li>D段：拖延对学业和职场的影响</li>
+                        <li>E段：拖延对健康的危害</li>
+                        <li>F段：提供应对策略</li>
+                    </ul>
+                </div>
+                
+                <div class="paragraph">
+                    <div class="paragraph-title">段落主旨速览</div>
+                    <div style="display: grid; gap: 15px; margin-top: 15px;">
+                        <div style="padding: 15px; background: white; border-radius: 8px;">
+                            <strong>A段：</strong> 拖延是什么？自责无用，问题严重
+                        </div>
+                        <div style="padding: 15px; background: white; border-radius: 8px;">
+                            <strong>B段：</strong> 不是懒惰，是情绪管理问题
+                        </div>
+                        <div style="padding: 15px; background: white; border-radius: 8px;">
+                            <strong>C段：</strong> 谁容易拖延？低自尊和完美主义者
+                        </div>
+                        <div style="padding: 15px; background: white; border-radius: 8px;">
+                            <strong>D段：</strong> 学业职场双重打击
+                        </div>
+                        <div style="padding: 15px; background: white; border-radius: 8px;">
+                            <strong>E段：</strong> 健康风险不容忽视
+                        </div>
+                        <div style="padding: 15px; background: white; border-radius: 8px;">
+                            <strong>F段：</strong> 解决方案：管理情绪，原谅自己
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- 段落精读 -->
+            <div id="detailed" class="tab-content">
+                <h2 style="color: #667eea; margin-bottom: 20px;">段落精读</h2>
+                
+                <div class="paragraph">
+                    <div class="paragraph-title">A段 - 拖延症的定义与危害</div>
+                    <div class="text-en">
+                        Procrastination is the habit of delaying a necessary task, usually by focusing on less urgent, more enjoyable, and easier activities instead.
+                    </div>
+                    <div class="text-zh">
+                        拖延症是推迟必要任务的习惯，通常是通过专注于不那么紧急、更愉快、更容易的活动来代替。
+                    </div>
+                    <div class="main-point">
+                        <strong>句子主干：</strong> Procrastination is the habit (主系表结构)<br>
+                        <strong>修饰成分：</strong> of delaying... (介词短语作定语)
+                    </div>
+                </div>
+                
+                <div class="paragraph">
+                    <div class="paragraph-title">B段 - 拖延的真正原因</div>
+                    <div class="text-en">
+                        Contrary to popular belief, procrastination is not due to laziness or poor time management. Scientific studies suggest procrastination is, in fact, caused by poor mood management.
+                    </div>
+                    <div class="text-zh">
+                        与普遍看法相反，拖延不是由于懒惰或时间管理不善。科学研究表明，拖延实际上是由情绪管理不善引起的。
+                    </div>
+                    <div class="main-point">
+                        <strong>关键短语：</strong> Contrary to popular belief (与普遍看法相反)<br>
+                        <strong>因果关系：</strong> is caused by (被...引起)
+                    </div>
+                </div>
+                
+                <div class="paragraph">
+                    <div class="paragraph-title">C段 - 易拖延人群</div>
+                    <div class="text-en">
+                        People with low self-esteem are more likely to procrastinate. Another group of people who tend to procrastinate are perfectionists, who worry their work will be judged harshly by others.
+                    </div>
+                    <div class="text-zh">
+                        自尊心低的人更容易拖延。另一组容易拖延的人是完美主义者，他们担心自己的工作会被他人严厉评判。
+                    </div>
+                    <div class="main-point">
+                        <strong>比较结构：</strong> more likely to (更可能...)<br>
+                        <strong>定语从句：</strong> who worry... (修饰 perfectionists)
+                    </div>
+                </div>
+            </div>
+            
+            <!-- 生词积累 -->
+            <div id="vocab" class="tab-content">
+                <h2 style="color: #667eea; margin-bottom: 20px;">生词积累</h2>
+                
+                <div class="vocab-list">
+                    <div class="vocab-card">
+                        <div class="vocab-word">procrastination</div>
+                        <div class="vocab-meaning">n. 拖延，耽搁</div>
+                        <div class="vocab-example">例句：Procrastination is a common problem among students.</div>
+                    </div>
+                    
+                    <div class="vocab-card">
+                        <div class="vocab-word">berate</div>
+                        <div class="vocab-meaning">v. 严厉责备，痛斥</div>
+                        <div class="vocab-example">例句：Don't berate yourself for making mistakes.</div>
+                    </div>
+                    
+                    <div class="vocab-card">
+                        <div class="vocab-word">chronically</div>
+                        <div class="vocab-meaning">adv. 长期地，慢性地</div>
+                        <div class="vocab-example">例句：People who chronically procrastinate face more health issues.</div>
+                    </div>
+                    
+                    <div class="vocab-card">
+                        <div class="vocab-word">self-esteem</div>
+                        <div class="vocab-meaning">n. 自尊，自尊心</div>
+                        <div class="vocab-example">例句：Low self-esteem can lead to procrastination.</div>
+                    </div>
+                    
+                    <div class="vocab-card">
+                        <div class="vocab-word">misconduct</div>
+                        <div class="vocab-meaning">n. 不当行为，渎职</div>
+                        <div class="vocab-example">例句：Academic misconduct includes cheating and plagiarism.</div>
+                    </div>
+                    
+                    <div class="vocab-card">
+                        <div class="vocab-word">plagiarism</div>
+                        <div class="vocab-meaning">n. 抄袭，剽窃</div>
+                        <div class="vocab-example">例句：Plagiarism is a serious academic offense.</div>
+                    </div>
+                    
+                    <div class="vocab-card">
+                        <div class="vocab-word">fraudulent</div>
+                        <div class="vocab-meaning">adj. 欺诈的，虚假的</div>
+                        <div class="vocab-example">例句：Using fraudulent excuses to extend deadlines is common.</div>
+                    </div>
+                    
+                    <div class="vocab-card">
+                        <div class="vocab-word">correlate</div>
+                        <div class="vocab-meaning">v. 相关联，关联</div>
+                        <div class="vocab-example">例句：Procrastination correlates with poor health.</div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- 同义替换 -->
+            <div id="synonyms" class="tab-content">
+                <h2 style="color: #667eea; margin-bottom: 20px;">同义替换</h2>
+                
+                <ul class="synonym-list">
+                    <li class="synonym-item">
+                        <div class="synonym-original">delay → put off</div>
+                        <div class="synonym-replacement">推迟任务 = 拖延任务</div>
+                    </li>
+                    
+                    <li class="synonym-item">
+                        <div class="synonym-original">necessary task → important task</div>
+                        <div class="synonym-replacement">必要的任务 = 重要的任务</div>
+                    </li>
+                    
+                    <li class="synonym-item">
+                        <div class="synonym-original">poor time management → ineffective time management</div>
+                        <div class="synonym-replacement">时间管理不善 = 时间管理无效</div>
+                    </li>
+                    
+                    <li class="synonym-item">
+                        <div class="synonym-original">mood management → emotion regulation</div>
+                        <div class="synonym-replacement">情绪管理 = 情绪调节</div>
+                    </li>
+                    
+                    <li class="synonym-item">
+                        <div class="synonym-original">low self-esteem → poor self-worth</div>
+                        <div class="synonym-replacement">低自尊 = 自我价值感低</div>
+                    </li>
+                    
+                    <li class="synonym-item">
+                        <div class="synonym-original">negatively impacts → adversely affects</div>
+                        <div class="synonym-replacement">负面影响 = 不利影响</div>
+                    </li>
+                    
+                    <li class="synonym-item">
+                        <div class="synonym-original">health issues → health problems</div>
+                        <div class="synonym-replacement">健康问题 = 健康困扰</div>
+                    </li>
+                    
+                    <li class="synonym-item">
+                        <div class="synonym-original">vicious cycle → negative loop</div>
+                        <div class="synonym-replacement">恶性循环 = 负面循环</div>
+                    </li>
+                </ul>
+            </div>
+            
+            <!-- 错因分析 -->
+            <div id="analysis" class="tab-content">
+                <h2 style="color: #667eea; margin-bottom: 20px;">错因分析模板</h2>
+                
+                <div class="analysis-section">
+                    <h3>📍 定位问题</h3>
+                    <div class="mistake-card">
+                        <div class="mistake-type">常见错误：关键词定位不准确</div>
+                        <div class="mistake-reason">
+                            <strong>原因：</strong> 只看到表面相似词，忽略了同义替换<br>
+                            <strong>解决：</strong> 注意题干和原文的同义替换，不要只找原词
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="analysis-section">
+                    <h3>📖 长难句理解</h3>
+                    <div class="mistake-card">
+                        <div class="mistake-type">常见错误：句子主干抓不住</div>
+                        <div class="mistake-reason">
+                            <strong>原因：</strong> 被修饰成分干扰，找不到主谓宾<br>
+                            <strong>解决：</strong> 先找主干（谁做了什么），再看修饰成分
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="analysis-section">
+                    <h3>🎯 题型薄弱点</h3>
+                    <div class="mistake-card">
+                        <div class="mistake-type">Heading 题：段落主旨把握不准</div>
+                        <div class="mistake-reason">
+                            <strong>技巧：</strong> 重点看段首段尾句，抓住段落核心论点
+                        </div>
+                    </div>
+                    
+                    <div class="mistake-card">
+                        <div class="mistake-type">True/False/Not Given：过度推理</div>
+                        <div class="mistake-reason">
+                            <strong>技巧：</strong> 严格按照原文，不要自己脑补信息
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="analysis-section">
+                    <h3>🕳️ 考官设坑点</h3>
+                    <div class="mistake-card">
+                        <div class="mistake-type">干扰项：原文出现但不是答案</div>
+                        <div class="mistake-reason">
+                            <strong>识别：</strong> 看似相关，但和题干问的不是一回事
+                        </div>
+                    </div>
+                    
+                    <div class="mistake-card">
+                        <div class="mistake-type">偷换概念：细微差别导致错误</div>
+                        <div class="mistake-reason">
+                            <strong>识别：</strong> 注意 some/all, may/must 等限定词
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <script>
+        function showTab(tabName) {
+            // 隐藏所有内容
+            const contents = document.querySelectorAll('.tab-content');
+            contents.forEach(content => content.classList.remove('active'));
+            
+            // 移除所有按钮的 active 状态
+            const tabs = document.querySelectorAll('.tab');
+            tabs.forEach(tab => tab.classList.remove('active'));
+            
+            // 显示选中的内容
+            document.getElementById(tabName).classList.add('active');
+            
+            // 激活对应按钮
+            event.target.classList.add('active');
+        }
+    </script>
+</body>
+</html>
